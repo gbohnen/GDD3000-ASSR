@@ -11,7 +11,7 @@ public class MenuButtons : MonoBehaviour {
 	// click level
     public void OnClickLevelButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     // click credits
