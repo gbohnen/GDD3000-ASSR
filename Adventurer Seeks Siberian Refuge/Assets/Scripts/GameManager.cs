@@ -8,25 +8,39 @@ public class GameManager : MonoBehaviour {
 	public int lives = 3;
 	public int bricks = 24;
 	public float resetDelay = 1f;
+	
+	public int currentPage = 1;
+	
 	public Text livesText;
 	public GameObject gameOver;
 	public GameObject youWon;
 	public GameObject bricksPrefab;
 	public GameObject paddle;
 	public GameObject deathParticles;
+	
 	public static GameManager instance = null;
 
 	private GameObject clonePaddle;
 
 	// Use this for initialization
 	void Awake() 
-	{
+	{		
 		if (instance == null)
 			instance = this;
 		else
 			Destroy (gameObject);	
 
-		Setup ();
+		DontDestroyOnLoad(gameObject);
+		if (SceneManager.GetActiveScene().name == "level1")
+		{
+			Setup ();
+		}
+	}
+	
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.P))
+			SceneManager.LoadScene(1);
 	}
 
 	public void Setup()
@@ -41,20 +55,26 @@ public class GameManager : MonoBehaviour {
 		{
 			youWon.SetActive(true);
 			Time.timeScale = .25f;
-			Invoke ("Reset", resetDelay);
+			Invoke ("ResetWin", resetDelay);
 		}
 
 		if (lives < 1) {
 			gameOver.SetActive(true);
 			Time.timeScale = .25f;
-			Invoke ("Reset", resetDelay);
+			Invoke ("ResetLose", resetDelay);
 		}
 	}
 
-	void Reset()
+	void ResetLose()
 	{
 		Time.timeScale = 1;
 		SceneManager.LoadScene (0);
+	}
+	
+	void ResetWin()
+	{
+		Time.timeScale = 1;
+		SceneManager.LoadScene (1);
 	}
 
 	public void LoseLife()
