@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -47,19 +47,19 @@ public class StoryStructure : MonoBehaviour {
         {
             case 1:
 				headerText.GetComponent<Text>().text = "Pilot:";
-                activeText.GetComponent<Text>().text = "The helicopter is going down! Brace for impact!";
+                activeText.GetComponent<Text>().text = "\"The helicopter is going down! Brace for impact!\"";
                 break;
             case 2:
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "Your helicopter clips a tree, and plummets into the Siberian Wilderness. The helo explodes in a cacaphonous cloud of flame and debris.";
+                activeText.GetComponent<Text>().text = "Your helicopter clips a tree, and plummets into the Siberian Wilderness. The helo explodes in a cacaphonous cloud of flame and debris. Your body is thrown away from the helicopter with the force of the crash";
                 break;
 			case 3:				
 				headerText.GetComponent<Text>().text = "Adventurer:";
-                activeText.GetComponent<Text>().text = "I say! It appears we've landed ourselves in a quagmire!";
+                activeText.GetComponent<Text>().text = "\"I say! It appears we've landed ourselves in a bit of a quagmire!\"";
 				break;
 			case 4:				
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "Peering through the wreckage, you hear the tortured screams of your pilot, trapped amongst the wreckage. \n\nAs you approach the wreck to try and save him, the reserve fuel canisters catch fire, and the explosion knocks you back to the treeline.";
+                activeText.GetComponent<Text>().text = "Peering through the wreckage as you pick yourself up, you hear the tortured screams of your pilot, trapped in the twisted steel. \n\nAs you approach the wreck to try and save him, the reserve fuel canisters catch fire, and the explosion knocks you back to the treeline.";
 				break;
 			case 5:				
 				headerText.GetComponent<Text>().text = "";
@@ -67,7 +67,7 @@ public class StoryStructure : MonoBehaviour {
 				break;
 			case 6:				
 				headerText.GetComponent<Text>().text = "Adventurer:";
-                activeText.GetComponent<Text>().text = "I was the only survivor. No food, no shelter, stranded here in the Siberian wild. Let's see if I can get my bearings.";
+                activeText.GetComponent<Text>().text = "\"I was the only survivor. No food, no shelter, stranded here in the Siberian wild. Let's see if I can get my bearings.\"";
 				break;
 			case 7:
 				headerText.GetComponent<Text>().text = "";
@@ -75,37 +75,37 @@ public class StoryStructure : MonoBehaviour {
 				break;
 			case 8:
 				headerText.GetComponent<Text>().text = "";
-				activeText.GetComponent<Text>().text = "You can: \n\n1 - Head deeper into the forest.\n2 - Hike to a rocky outcropping to find shelter.";
+				activeText.GetComponent<Text>().text = "You can: \n\n1 - Head deeper into the forest to gather supplies.\n2 - Hike to a rocky outcropping in the hopes of finding shelter.";
 				choice1Button.SetActive(true);
 				choice2Button.SetActive(true);
 				continueButton.SetActive(false);
 				break;				
 			case 9:				// option 1
 				headerText.GetComponent<Text>().text = "";
-				activeText.GetComponent<Text>().text = "You continue into the forest. You come to a clearing, and your instincts tell you there may be supplies nearby, but you are wary of being out in the open for long.";
+				activeText.GetComponent<Text>().text = "You decide to continue into the forest. You come to a clearing, and your instincts tell you there may be supplies nearby, but you are wary of being out in the open for too long.";
 				currentPage++;
-				supplies = "a makeshift spear";
+				supplies = "cobble together a makeshift spear from a particularly large branch.";
 				break;				
 			case 10:			// option 2
 				headerText.GetComponent<Text>().text = "";
-				activeText.GetComponent<Text>().text = "The path to the outcropping brings you back closer to the crash site. In the bitter cold, it seems as if the flames are dying down. There might be something worth salvaging.";
-				supplies = "metal plating";
+				activeText.GetComponent<Text>().text = "The path to the outcropping brings you back closer to the crash site. In the bitter cold, it seems as if the flames have died down. There might be something worth salvaging within the wreckage.";
+                supplies = "find some metal plating from the wreckage.";
 				break;
             case 11:		
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "Do you:\n\n1 - Gather supplies\n2 - Head onward to shelter";
+                activeText.GetComponent<Text>().text = "Do you:\n\n1 - Choose to gather supplies\n2 - Continue to seek shelter";
                 choice1Button.SetActive(true);
 				choice2Button.SetActive(true);
 				continueButton.SetActive(false);
 				break;
             case 12:			// option 1	
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "You manage to scrounge " + supplies + " from the area. This will come in handy, if you ever manage to find food.";
+                activeText.GetComponent<Text>().text = "You manage to " + supplies + " This will come in handy, if you ever need to defend yourself.";
                 currentPage++;
 				break;
             case 13:			// option 2	
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "Despite the opportunity for help, you think there's an equally good chance for you to get seriously hurt.";
+                activeText.GetComponent<Text>().text = "Despite the opportunity for help, you think there's an equally likely chance for you to get seriously hurt.";
                 break;
             case 14:			
 				headerText.GetComponent<Text>().text = "";
@@ -133,7 +133,7 @@ public class StoryStructure : MonoBehaviour {
                 break;
 			case 20:			
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "You begin to laboriously climb your way out, hopefully before you lose the last light of day.";
+                activeText.GetComponent<Text>().text = "You begin the laborious task of climbing out of this forsaken crack, hopefully before you lose the last light of day.";
                 break;
 			case 21:
 				currentPage++;
@@ -142,7 +142,7 @@ public class StoryStructure : MonoBehaviour {
 				break;
 			case 22:			
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "You did it. You survived the pit. Tattered and beaten, you shample your way over to the outpost. With luck, you can barter passage back to civilization.";
+                activeText.GetComponent<Text>().text = "You did it. You survived the pit. Tattered and beaten, you shamble your way over to the outpost. With luck, you can barter passage back to civilization.";
                 break;
 			default:		
 				headerText.GetComponent<Text>().text = "";
