@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public float resetDelay = 1f;
 	
 	public Text livesText;
+	public Text upgradeText;
 	public GameObject gameOver;
 	public GameObject youWon;
 	public GameObject bricksPrefab;
@@ -45,12 +46,15 @@ public class GameManager : MonoBehaviour {
 		{
 		case "spear":
 			ballMod = .8f;
+			upgradeText.text = "Upgrade: Slow Ball";
 			break;
 		case "metal":
 			paddleMod = 2f;
+			upgradeText.text = "Upgrade: Fast Paddle";
 			break;
 		default:
 			paddleMod = 2f;
+			upgradeText.text = "";
 			break;
 		}
 
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour {
 	void ResetLose()
 	{
 		Time.timeScale = 1;
+		PlayerPrefs.SetInt ("currentPage", 1);
 		SceneManager.LoadScene (0);
 	}
 	
