@@ -31,16 +31,18 @@ public class StoryStructure : MonoBehaviour {
 			instance = this;
 		else
 			Destroy(gameObject);
-		
-		currentPage = pageState.GetComponent<PageState>().currentPage;	
 
 		totalPages = 23;		
-		
+
+		if (currentPage == 0)
+			currentPage = PlayerPrefs.GetInt ("currentPage");
+
 		UpdateStoryPanel();
 	}
 
     public void UpdateStoryPanel()
     {
+		Debug.Log (PlayerPrefs.GetInt ("currentPage").ToString () + " " + currentPage.ToString ());
         // add each dialogue option in a case below. additional cases are easily added. 
         // use the format described in case 1
         switch (currentPage)
@@ -51,7 +53,7 @@ public class StoryStructure : MonoBehaviour {
                 break;
             case 2:
 				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "Your helicopter clips a tree, and plummets into the Siberian Wilderness. The helo explodes in a cacaphonous cloud of flame and debris. Your body is thrown away from the helicopter with the force of the crash";
+                activeText.GetComponent<Text>().text = "Your helicopter clips a tree, and plummets into the Siberian Wilderness. The helo explodes in a cacaphonous cloud of flame and debris. Your body is thrown away from the helicopter with the force of the crash.";
                 break;
 			case 3:				
 				headerText.GetComponent<Text>().text = "Adventurer:";
@@ -137,26 +139,29 @@ public class StoryStructure : MonoBehaviour {
                 break;
 			case 21:
 				currentPage++;
-				pageState.GetComponent<PageState>().currentPage = currentPage;
+				PlayerPrefs.SetInt ("currentPage", currentPage);
 				SceneManager.LoadScene(2);
 				break;
 			case 22:			
 				headerText.GetComponent<Text>().text = "";
                 activeText.GetComponent<Text>().text = "You did it. You survived the pit. Tattered and beaten, you shamble your way over to the outpost. With luck, you can barter passage back to civilization.";
                 break;
-			default:		
-				headerText.GetComponent<Text>().text = "";
-                activeText.GetComponent<Text>().text = "";
-				SceneManager.LoadScene(0);
-				break;
+		default:		
+			headerText.GetComponent<Text> ().text = "";
+			activeText.GetComponent<Text> ().text = "";
+			currentPage = 0;
+			SceneManager.LoadScene (0);
+			break;
         }
+
+		PlayerPrefs.SetInt ("currentPage", currentPage);
     }
 	
 	public void ClickContinue()
 	{
 		if (currentPage < totalPages)
 		{
-			currentPage++;
+			currentPage = PlayerPrefs.GetInt ("currentPage") + 1;
 			UpdateStoryPanel();
 		}
 		else
@@ -166,7 +171,7 @@ public class StoryStructure : MonoBehaviour {
 	
 	public void ClickOption1()
 	{
-		currentPage++;
+		currentPage = PlayerPrefs.GetInt ("currentPage") + 1;
 		UpdateStoryPanel();
 		choice1Button.SetActive(false);
 		choice2Button.SetActive(false);
@@ -175,7 +180,7 @@ public class StoryStructure : MonoBehaviour {
 	
 	public void ClickOption2()
 	{
-		currentPage++;
+		currentPage = PlayerPrefs.GetInt ("currentPage") + 2;
 		UpdateStoryPanel();
 		choice1Button.SetActive(false);
 		choice2Button.SetActive(false);
