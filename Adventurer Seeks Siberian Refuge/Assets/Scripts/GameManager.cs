@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour {
 	public void DestroyBrick()
 	{
 		bricks--;
+		Debug.Log (bricks.ToString ());
 		CheckGameOver ();
 	}
 }
