@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour {
 			transform.parent = null;
 			ballActive = true;
 			rb.isKinematic = false;
-			rb.AddForce (new Vector3 (ballInitVel, ballInitVel, 0));
+			rb.AddForce (new Vector3 (ballInitVel * GameManager.ballMod, ballInitVel * GameManager.ballMod, 0));
 		}
 	}
 }

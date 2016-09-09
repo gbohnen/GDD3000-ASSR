@@ -42,7 +42,6 @@ public class StoryStructure : MonoBehaviour {
 
     public void UpdateStoryPanel()
     {
-		Debug.Log (PlayerPrefs.GetInt ("currentPage").ToString () + " " + currentPage.ToString ());
         // add each dialogue option in a case below. additional cases are easily added. 
         // use the format described in case 1
         switch (currentPage)
@@ -83,15 +82,17 @@ public class StoryStructure : MonoBehaviour {
 				continueButton.SetActive(false);
 				break;				
 			case 9:				// option 1
-				headerText.GetComponent<Text>().text = "";
-				activeText.GetComponent<Text>().text = "You decide to continue into the forest. You come to a clearing, and your instincts tell you there may be supplies nearby, but you are wary of being out in the open for too long.";
+				headerText.GetComponent<Text> ().text = "";
+				activeText.GetComponent<Text> ().text = "You decide to continue into the forest. You come to a clearing, and your instincts tell you there may be supplies nearby, but you are wary of being out in the open for too long.";
 				currentPage++;
 				supplies = "cobble together a makeshift spear from a particularly large branch.";
+				PlayerPrefs.SetString ("supplies", "spear");
 				break;				
 			case 10:			// option 2
 				headerText.GetComponent<Text>().text = "";
 				activeText.GetComponent<Text>().text = "The path to the outcropping brings you back closer to the crash site. In the bitter cold, it seems as if the flames have died down. There might be something worth salvaging within the wreckage.";
                 supplies = "find some metal plating from the wreckage.";
+				PlayerPrefs.SetString ("supplies", "metal");
 				break;
             case 11:		
 				headerText.GetComponent<Text>().text = "";
@@ -108,7 +109,8 @@ public class StoryStructure : MonoBehaviour {
             case 13:			// option 2	
 				headerText.GetComponent<Text>().text = "";
                 activeText.GetComponent<Text>().text = "Despite the opportunity for help, you think there's an equally likely chance for you to get seriously hurt.";
-                break;
+				PlayerPrefs.SetString ("supplies", "none");    
+				break;
             case 14:			
 				headerText.GetComponent<Text>().text = "";
                 activeText.GetComponent<Text>().text = "You cross the clearing and resume your trek through the darkening woods.";

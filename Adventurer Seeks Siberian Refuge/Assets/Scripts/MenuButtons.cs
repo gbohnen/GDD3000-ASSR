@@ -8,10 +8,14 @@ public class MenuButtons : MonoBehaviour {
     public GameObject creditsPanel;
     public bool creditsActive = false;
 
+	void Awake()
+	{
+		PlayerPrefs.SetInt ("currentPage", 1);
+	}
+
 	// click level
     public void OnClickLevelButton()
     {
-		PlayerPrefs.SetInt ("currentPage", 1);
         SceneManager.LoadScene(1);
     }
 

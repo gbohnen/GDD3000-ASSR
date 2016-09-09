@@ -5,11 +5,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public int lives = 3;
-	public int bricks = 24;
+	public int lives;
+	public int bricks;
 	public float resetDelay = 1f;
-	
-	public int currentPage = 1;
 	
 	public Text livesText;
 	public GameObject gameOver;
@@ -22,19 +20,45 @@ public class GameManager : MonoBehaviour {
 
 	private GameObject clonePaddle;
 
+	public static float paddleMod;
+	public static float paddleStrech;
+	public static float ballMod;
+
 	// Use this for initialization
 	void Awake() 
-	{		
+	{
 		if (instance == null)
 			instance = this;
 		else
-			Destroy (gameObject);	
+			Destroy (gameObject);
 
-		DontDestroyOnLoad(gameObject);
-		if (SceneManager.GetActiveScene().name == "level1")
+		paddleMod = 1f;
+		paddleStrech = 1f;
+		ballMod = 1f;
+
+		lives = 3;
+		bricks = 24;
+
+		Debug.Log(PlayerPrefs.GetString("supplies"));
+
+		switch (PlayerPrefs.GetString ("supplies")) 
 		{
-			Setup ();
+		case "spear":
+			ballMod = .8f;
+			break;
+		case "metal":
+			paddleMod = 2f;
+			break;
+		default:
+			paddleMod = 2f;
+			break;
 		}
+
+		Debug.Log ("ballMod " + ballMod);
+		Debug.Log ("paddleStrech " + paddleStrech);
+		Debug.Log ("paddleMod " + paddleMod);
+
+		Setup ();
 	}
 	
 	void Update()
